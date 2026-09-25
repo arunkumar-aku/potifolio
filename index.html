@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arun Kumar Katikarla | Portfolio</title>
+    <meta name="description" content="Portfolio of Arun Kumar Katikarla, Electronics & Communication Engineering Student, Embedded Systems & IoT Developer.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+            --bg-color: #111111;
+            --card-bg-color: #161616;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --accent: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.15);
+            --accent-hover: #9333ea;
+            --border: #2a2a2a;
+            --border-hover: #3e3e3e;
+            --font-family: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1100px;
+        }
+
+        /* --- GLOBAL BASICS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        button, input, textarea {
+            font-family: inherit;
+            background: none;
+            border: none;
+            color: inherit;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 7rem 0 4rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- SCROLL ANIMATION STATES --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(17, 17, 17, 0.95);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger-box {
+            width: 24px;
+            height: 18px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            display: block;
+            top: 50%;
+            margin-top: -1px;
+        }
+
+        .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            position: absolute;
+            transition-property: transform;
+            transition-duration: 0.15s;
+            transition-timing-function: ease;
+        }
+
+        .hamburger-inner::before, .hamburger-inner::after {
+            content: "";
+            display: block;
+        }
+
+        .hamburger-inner::before {
+            top: -6px;
+        }
+
+        .hamburger-inner::after {
+            bottom: -6px;
+        }
+
+        /* Hamburger Transitions */
+        .hamburger.is-active .hamburger-inner {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.is-active .hamburger-inner::before {
+            top: 0;
+            opacity: 0;
+        }
+
+        .hamburger.is-active .hamburger-inner::after {
+            bottom: 0;
+            transform: rotate(-90deg);
+        }
+
+        /* Mobile Overlay Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-nav.is-open {
+            right: 0;
+        }
+
+        .mobile-link {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .mobile-link:hover, .mobile-link.active {
+            color: var(--accent);
+        }
+
+        /* --- HERO --- */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 6rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background-color: rgba(168, 85, 247, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* --- ABOUT ME --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .about-avatar-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            padding: 6px;
+            background-color: var(--card-bg-color);
+            transition: var(--transition);
+        }
+
+        .about-avatar-container:hover .about-avatar {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+
+        .about-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .about-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .about-meta {
+            display: flex;
+            gap: 2.5rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.25rem;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .skill-category-num {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover .skill-category-num {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .skill-category-icon {
+            font-size: 1.35rem;
+            color: var(--accent);
+            margin-left: auto;
+        }
+
+        .skill-category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .skill-badge {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--accent);
+            background-color: rgba(168, 85, 247, 0.04);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .skill-badge-icon {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .skill-badge:hover .skill-badge-icon {
+            color: var(--accent);
+        }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-5px);
+        }
+
+        .project-image-wrapper {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.04);
+        }
+
+        .project-content {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-desc {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+            flex-grow: 1;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+
+        /* --- CERTIFICATES --- */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: transparent;
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .certificate-card:hover::before {
+            background-color: var(--accent);
+        }
+
+        .certificate-icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 8px;
+            background-color: rgba(168, 85, 247, 0.08);
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .certificate-issuer {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .certificate-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .certificate-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .certificate-id {
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: var(--text-muted);
+            background-color: var(--bg-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            align-self: flex-start;
+        }
+
+        .certificate-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover .certificate-action {
+            color: var(--accent);
+        }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-submit {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: var(--accent);
+            color: var(--text-primary);
+            padding: 0.85rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background-color: var(--border);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Form feedback styling */
+        .form-feedback {
+            display: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-feedback.success {
+            display: block;
+            background-color: rgba(168, 85, 247, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .form-feedback.error {
+            display: block;
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* --- FOOTER & SOCIALS --- */
+        footer {
+            border-top: 1px solid var(--border);
+            background-color: var(--bg-color);
+            padding: 3rem 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border);
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+            background-color: rgba(168, 85, 247, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* --- ANIMATION KEYFRAMES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVENESS & BREAKPOINTS --- */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .about-avatar-container {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Hide desktop nav */
+            }
+
+            .hamburger {
+                display: block; /* Show mobile hamburger */
+            }
+
+            section {
+                padding: 5.5rem 0 3rem 0;
+            }
+
+            .hero-section {
+                min-height: 80vh;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .about-card {
+                padding: 1.75rem;
+            }
+
+            .about-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header id="header">
+        <div class="container navbar">
+            <a href="#home" class="nav-logo">
+                ARUN KUMAR<span> KATIKARLA</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education & Leadership</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" aria-label="Menu" aria-expanded="false" id="hamburger-btn">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <ul class="mobile-nav" id="mobile-nav">
+        <li><a href="#home" class="mobile-link active">Home</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#skills" class="mobile-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-link">Projects</a></li>
+        <li><a href="#education" class="mobile-link">Education & Leadership</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+
+    <main>
+        <!-- HERO -->
+        <section id="home" class="hero-section fade-in">
+            <div class="container hero-content">
+                <span class="hero-subtitle">Electronics & Communication Engineering</span>
+                <h1 class="hero-title">Arun Kumar Katikarla</h1>
+                <p class="hero-description">
+                    Embedded Systems & IoT Developer | Second-year B.Tech student specializing in Drone Systems, Hardware-Software Interfacing, and Intelligent Automation.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Discovery</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-avatar-container">
+                        <img src="assets/profile.jpg" alt="Arun Kumar Katikarla Avatar" class="about-avatar">
+                    </div>
+                    
+                    <div class="about-card">
+                        <h3 class="about-title">Embedded Systems & IoT Developer</h3>
+                        <p class="about-text">
+                            Second-year B.Tech student in <span class="about-highlight">Electronics and Communication Engineering</span> with hands-on experience in embedded systems, Arduino-based development, and sensor integration.
+                        </p>
+                        <p class="about-text">
+                            I've built projects involving drone systems, IoT-based monitoring devices, and hardware-software interfacing. I'm motivated to apply problem-solving skills in real-world electronics, communication systems, and intelligent hardware applications while continuously learning emerging technologies.
+                        </p>
+                        
+                        <div class="about-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Location</span>
+                                <span class="meta-value">Hyderabad, Telangana</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Degree</span>
+                                <span class="meta-value">B.Tech ECE (2024–Present)</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Focus</span>
+                                <span class="meta-value">Embedded & IoT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Capabilities</span>
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <!-- Category 1: Languages & Software -->
+                    <div class="skill-card">
+                        <div class="skill-category-header">
+                            <span class="skill-category-num">1</span>
+                            <h3 class="skill-category-title">Languages & Software</h3>
+                            <i class="fa-solid fa-code skill-category-icon"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-badge"><i class="fa-solid fa-c skill-badge-icon"></i> C</span>
+                            <span class="skill-badge"><i class="fa-brands fa-python skill-badge-icon"></i> Python</span>
+                            <span class="skill-badge"><i class="fa-solid fa-microchip skill-badge-icon"></i> Embedded C</span>
+                            <span class="skill-badge"><i class="fa-solid fa-chart-line skill-badge-icon"></i> MATLAB (Basics)</span>
+                            <span class="skill-badge"><i class="fa-brands fa-git-alt skill-badge-icon"></i> Git</span>
+                            <span class="skill-badge"><i class="fa-brands fa-github skill-badge-icon"></i> GitHub</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Category 2: Hardware & Microcontrollers -->
+                    <div class="skill-card">
+                        <div class="skill-category-header">
+                            <span class="skill-category-num">2</span>
+                            <h3 class="skill-category-title">Hardware & Microcontrollers</h3>
+                            <i class="fa-solid fa-microchip skill-category-icon"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-badge"><i class="fa-solid fa-cpu skill-badge-icon"></i> Arduino</span>
+                            <span class="skill-badge"><i class="fa-brands fa-raspberry-pi skill-badge-icon"></i> Raspberry Pi</span>
+                            <span class="skill-badge"><i class="fa-solid fa-wave-square skill-badge-icon"></i> Circuit Design</span>
+                            <span class="skill-badge"><i class="fa-solid fa-plug skill-badge-icon"></i> Sensor Integration</span>
+                            <span class="skill-badge"><i class="fa-solid fa-memory skill-badge-icon"></i> Embedded Systems</span>
+                            <span class="skill-badge"><i class="fa-solid fa-layer-group skill-badge-icon"></i> PCB Basics</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Category 3: Communication & IoT -->
+                    <div class="skill-card">
+                        <div class="skill-category-header">
+                            <span class="skill-category-num">3</span>
+                            <h3 class="skill-category-title">Communication & IoT</h3>
+                            <i class="fa-solid fa-network-wired skill-category-icon"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-badge"><i class="fa-solid fa-wifi skill-badge-icon"></i> Arduino-based IoT Systems</span>
+                            <span class="skill-badge"><i class="fa-solid fa-gauge-high skill-badge-icon"></i> Sensor-based Monitoring</span>
+                            <span class="skill-badge"><i class="fa-solid fa-arrows-left-right skill-badge-icon"></i> UART</span>
+                            <span class="skill-badge"><i class="fa-solid fa-diagram-project skill-badge-icon"></i> I2C</span>
+                            <span class="skill-badge"><i class="fa-solid fa-sliders skill-badge-icon"></i> SPI</span>
+                            <span class="skill-badge"><i class="fa-brands fa-bluetooth-b skill-badge-icon"></i> Bluetooth (HC-05)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Category 4: Tools & Components -->
+                    <div class="skill-card">
+                        <div class="skill-category-header">
+                            <span class="skill-category-num">4</span>
+                            <h3 class="skill-category-title">Tools & Components</h3>
+                            <i class="fa-solid fa-screwdriver-wrench skill-category-icon"></i>
+                        </div>
+                        <div class="skill-list">
+                            <span class="skill-badge"><i class="fa-solid fa-laptop-code skill-badge-icon"></i> Proteus</span>
+                            <span class="skill-badge"><i class="fa-solid fa-cubes skill-badge-icon"></i> Tinkercad</span>
+                            <span class="skill-badge"><i class="fa-solid fa-terminal skill-badge-icon"></i> Arduino IDE</span>
+                            <span class="skill-badge"><i class="fa-solid fa-compass-drafting skill-badge-icon"></i> MPU6050</span>
+                            <span class="skill-badge"><i class="fa-solid fa-heart-pulse skill-badge-icon"></i> MAX30100</span>
+                            <span class="skill-badge"><i class="fa-solid fa-battery-full skill-badge-icon"></i> Li-Po Battery Systems</span>
+                            <span class="skill-badge"><i class="fa-solid fa-bolt skill-badge-icon"></i> ESC & Brushless Motors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Innovation</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-image-wrapper">
+                            <img src="assets/project1.png" alt="HYDRA-X Multi-Purpose Drone" class="project-image">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">Drone & Modular Payload</span>
+                            <h3 class="project-title">HYDRA-X Multi-Purpose Drone</h3>
+                            <p class="project-desc">
+                                Designed a conceptual multi-purpose drone with a donut-shaped frame and modular payload docking for surveillance, delivery, and environmental monitoring. Integrates brushless motors, ESCs, and sensor modules for stable flight, with interchangeable modules like cameras, sprayers, and sampling tools.
+                            </p>
+                            <div class="project-actions">
+                                <a href="https://docs.google.com/document/d/10VzTuC29pLMoEaN1lvCq087LLKbGILM7/edit?usp=sharing&ouid=110451850659808678570&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">View Document / Details <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 0.35rem;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-image-wrapper">
+                            <img src="assets/project2.png" alt="AI CAD Designer Platform" class="project-image">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-badge">AI & Engineering Platform</span>
+                            <h3 class="project-title">AI CAD Designer Platform</h3>
+                            <p class="project-desc">
+                                Developing an AI-assisted CAD platform that helps users generate and modify engineering designs automatically, using AI for component modeling, design optimization, and automated suggestions.
+                            </p>
+                            <div class="project-actions">
+                                <a href="https://easy-design-bot.lovable.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visit Website <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 0.35rem;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION & LEADERSHIP -->
+        <section id="education" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Background</span>
+                    <h2 class="section-title">Education & Leadership</h2>
+                </div>
+                
+                <div class="certificates-grid">
+                    <!-- Education 1 -->
+                    <div class="certificate-card">
+                        <div class="certificate-icon-wrapper">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                            <span class="certificate-issuer">Vignan's Foundation for Science Technology and Research</span>
+                            <h3 class="certificate-title">B.Tech in Electronics & Communication Engineering</h3>
+                        </div>
+                        <p class="certificate-date">2024 – Pursuing (Second-Year Student) · Hyderabad</p>
+                        <span class="certificate-id">CGPA: 7.22</span>
+                    </div>
+                    
+                    <!-- Education 2 -->
+                    <div class="certificate-card">
+                        <div class="certificate-icon-wrapper">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                            <span class="certificate-issuer">Narayana Junior College & Gowtham Model School</span>
+                            <h3 class="certificate-title">Intermediate & Class X Education</h3>
+                        </div>
+                        <p class="certificate-date">Intermediate (2022–2024): 93.6% | Class X (2021–2022): 90%</p>
+                        <span class="certificate-id">Hyderabad, Telangana</span>
+                    </div>
+                    
+                    <!-- Leadership 1 -->
+                    <div class="certificate-card">
+                        <div class="certificate-icon-wrapper">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                            <span class="certificate-issuer">VFSTR Off Campus</span>
+                            <h3 class="certificate-title">Student Lead, AI & Robotics Club</h3>
+                        </div>
+                        <p class="certificate-date">Lead student-driven AI/robotics initiatives, coordinate technical discussions and hands-on experimentation.</p>
+                        <span class="certificate-id">Student Lead</span>
+                    </div>
+
+                    <!-- Leadership 2 -->
+                    <div class="certificate-card">
+                        <div class="certificate-icon-wrapper">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                            <span class="certificate-issuer">Campus & College Events</span>
+                            <h3 class="certificate-title">Hackathons & Organization</h3>
+                        </div>
+                        <p class="certificate-date">Participated in internal college hackathons; volunteered organizing a campus-level hackathon.</p>
+                        <span class="certificate-id">Hackathons</span>
+                    </div>
+
+                    <!-- Leadership 3 -->
+                    <div class="certificate-card">
+                        <div class="certificate-icon-wrapper">
+                            <i class="fa-solid fa-plane-up"></i>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                            <span class="certificate-issuer">C-DAC & GDG Hyderabad</span>
+                            <h3 class="certificate-title">Bootcamps & Tech Conferences</h3>
+                        </div>
+                        <p class="certificate-date">Completed UAV Bootcamp by C-DAC; attended GDG Hyderabad DevFest.</p>
+                        <span class="certificate-id">Tech Training</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Reach Out</span>
+                    <h2 class="section-title">Let's Connect</h2>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <!-- Direct Contact Details -->
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); text-align: center;">
+                            <div>
+                                <i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                <a href="mailto:arunkumarkatikarla@gmail.com" style="color: var(--text-primary); font-weight: 500;">arunkumarkatikarla@gmail.com</a>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-phone" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                <a href="tel:+916303357408" style="color: var(--text-primary); font-weight: 500;">+91 6303357408</a>
+                            </div>
+                            <div>
+                                <i class="fa-brands fa-github" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                <a href="https://github.com/arunkumar-aku" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); font-weight: 500;">GitHub Profile</a>
+                            </div>
+                            <div>
+                                <i class="fa-brands fa-linkedin" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                <a href="https://www.linkedin.com/in/arun-kumar-katikarla-595164333" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); font-weight: 500;">LinkedIn Profile</a>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-location-dot" style="color: var(--accent); margin-right: 0.5rem;"></i>
+                                <span style="color: var(--text-secondary);">Hyderabad, Telangana</span>
+                            </div>
+                        </div>
+
+                        <!-- Success/Error Feedback Container -->
+                        <div id="form-feedback" class="form-feedback"></div>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-input" placeholder="Tell me about your inquiry or project..." required></textarea>
+                            </div>
+                            <div class="contact-submit">
+                                <button type="submit" class="btn submit-btn" id="submit-btn">
+                                    Send Message <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <!-- Social Icon Links -->
+            <div class="social-links">
+                <a href="mailto:arunkumarkatikarla@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="https://github.com/arunkumar-aku" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/arun-kumar-katikarla-595164333" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <p class="footer-copyright">
+                &copy; 2026 Arun Kumar Katikarla. All rights reserved. Crafted with care.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC (VANILLA JS) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- HEADER SCROLL ACTION ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- MOBILE HAMBURGER MENU ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            const toggleMobileMenu = () => {
+                const isOpen = mobileNav.classList.toggle('is-open');
+                hamburgerBtn.classList.toggle('is-active');
+                hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                // Prevent scrolling behind menu when open
+                document.body.style.overflow = isOpen ? 'hidden' : 'initial';
+            };
+
+            hamburgerBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileNav.classList.contains('is-open')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // --- ACTIVE SECTION HIGHLIGHTER ON SCROLL ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const handleActiveLink = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Highlight slightly before section is fully reached
+                    if (window.scrollY >= sectionTop - 180) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+
+                mobileLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', handleActiveLink);
+            handleActiveLink(); // Trigger initially on page load
+
+            // --- SUBTLE FADE-IN ENTRANCE OBSERVER ---
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Animates only once
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+
+            // --- CONTACT FORM SUBMISSION ---
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const feedbackContainer = document.getElementById('form-feedback');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Simple client side validation check
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    showFeedback('Please fill out all fields.', 'error');
+                    return;
+                }
+
+                // Visual loader state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending Message... <i class="fa-solid fa-spinner fa-spin"></i>';
+
+                // Simulate secure asynchronous submission request
+                setTimeout(() => {
+                    showFeedback('Thank you, Arun Kumar Katikarla has received your message! I will be in touch soon.', 'success');
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-arrow-right"></i>';
+                }, 1500);
+            });
+
+            const showFeedback = (msg, type) => {
+                feedbackContainer.className = `form-feedback ${type}`;
+                feedbackContainer.textContent = msg;
+                // Scroll feedback into view slightly if mobile
+                feedbackContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Hide feedback after 7 seconds
+                setTimeout(() => {
+                    feedbackContainer.className = 'form-feedback';
+                    feedbackContainer.textContent = '';
+                }, 7000);
+            };
+        });
+    </script>
+</body>
+</html>
